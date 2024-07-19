@@ -1,0 +1,5 @@
+{
+    "vscode-pets.throwBallWithMouse": false,
+    "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+    "typescript.tsserver.enableTracing": true
+}
