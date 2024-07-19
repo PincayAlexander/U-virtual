@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Icono y Nombre -->
+    <link rel="icon" href="{% static 'Uvirtual/image/logo.ico' %}">
+    <title>U-virtual</title>
+    <!-- Static (Hojas de Estilo y Script) -->
+    <link rel="stylesheet" href="{% static 'Uvirtual/style/base.css' %}">
+    <script src="{% static 'Uvirtual/script/script.js' %}"></script>
+    {% block head %}{% endblock %}
+    <!-- Iconos -->
+    <script src="https://kit.fontawesome.com/0fb473f9ca.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <header class="navbar">
+        <img src="{% static 'Uvirtual/image/UEFU-logo2.png' %}" alt="logo">
+        <h1>U-Virtual</h1>
+            <nav class="optionsUser">
+                <p><i class="fa-solid fa-user"></i>Vacio</p>
+                <ul class="list__options">
+                    <li class="list__options--item"><a href="#">
+                        Usuario
+                    </a></li>
+                    <li class="list__options--item"><a href="#">
+                        Configuracion
+                    </a></li>
+                    <li class="list__options--item"><a href="#">
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="navbar__button--logout">
+                                <p>Cerrar Sesión</p>
+                            </button>
+                        </form>
+                    </a></li>
+                </ul>
+            </nav>
+    </header/>
+    <div class="container">
+        <!-- Menú Lateral -->
+        <nav class="sidebar">
+            <div class="sidebar__header">
+                <img src="{% static 'Uvirtual/image/logoUEFU.png' %}" alt="">
+                <strong>U-VIRTUAL</strong>
+            </div>
+            <ul class="sidebar__links">
+                <li class="sidebar__links--item"><a href="{% url 'calificacion' %}">
+                    <i class="fa-brands fa-readme"></i><p>CALIFICACIONES</p></a>
+                </li>
+                <li class="sidebar__links--item"><a href="{% url 'actividad' %}">
+                    <i class="fa-solid fa-clipboard"></i><p>ACTIVIDADES</p></a>
+                </li>
+                <li class="sidebar__links--item"><a href="{% url 'horario' %}">
+                    <i class="fa-regular fa-calendar-days"></i><p>HORARIO</p></a>
+                </li>
+                <li class="sidebar__links--item"><a href="{% url 'citacion' %}">
+                    <i class="fa-solid fa-user-clock"></i><p>CITACION</p></a>
+                </li>
+                <li class="sidebar__links--item"><a href="{% url 'asignatura' %}">
+                    <i class="fa-solid fa-book-open"></i><p>Asignatura</p></a>
+                </li>
+                <li class="sidebar__links--item"><a href="{% url 'tutoria' %}">
+                    <i class="fa-solid fa-users"></i><p>TURORIA</p></a>
+                </li>
+            </ul>
+                <div class="toggle-button" onclick="toggleSidebar()">☰</div>
+        </nav>
+
+        <!-- Contenido de la página -->
+        <div class="content">
+            {% block contenido %}{% endblock %}
+        </div>
+    </div>
+    <footer class="footer">
+        <p>©</p>
+    </footer>
+
+</body>
+
+</html>

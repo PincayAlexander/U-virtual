@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Icono y Nombre -->
+    <link rel="icon" href="{% static "Uvirtual/image/logo.ico" %}">
+    <title>U-VIRTUAL</title>
+    <!-- Hojas de Estilo -->
+    <link rel="stylesheet" href="{% static "Uvirtual/style/login.css" %}">
+    <!-- Iconos -->
+    <script src="https://kit.fontawesome.com/0fb473f9ca.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- Inicio de sesión -->
+    <div class="background__container">
+        <img src="{% static "Uvirtual/image/background.png" %}" alt="Fondo">
+    </div>
+    <header class="header">
+        <div class="header__logo">
+            <img src="{% static "Uvirtual/image/logoUEFU.png" %}" alt="">
+            <h2>U-VIRTUAL</h2>
+        </div>
+        <h1 class="header__title">Unidad Educativa Fiscal Uruguay</h1>
+    </header>
+    <div class="content">
+        <div class="loginForm">
+            <header class="form__header">
+                <img src="{% static "Uvirtual/image/UEFU-logo2.png" %}" class="form__header--img">
+            </header>
+            <form action="{% url "login" %}" method="post">
+                {% csrf_token %}
+                <div class="form__field">
+                    <label for="{{ form.username.id_for_label }}" class="required">{{ form.username.label }}</label>
+                    {# form.username.label_tag #} 
+                    {{ form.username }}
+                </div>
+                <div class="form__field">
+                    <label for="{{ form.password.id_for_label }}" class="required">{{ form.password.label }}</label>
+                    {{ form.password }}
+                </div>
+                {% if form.errors %}
+                    <div class="form__error">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <b>Error:</b> Usuario o contraseña incorrecto. <br>
+                        Por favor, inténtelo de nuevo.
+                    </div>
+                {% endif %}
+                <footer class="form__footer">
+                    <input type="submit" value="Acceder" class="form__button" />
+                    <a href="#" class="form__footer--urls">¿Olvidaste tu contraseña? </a>
+                </footer>
+            </form>
+
+        </div>
+    </div><!-- formulario-->
+    </div>
+</body>
