@@ -7,23 +7,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Icono y Nombre -->
-    <link rel="icon" href="{% static "Uvirtual/image/logo.ico" %}">
+    <link rel="icon" href="{% static './img/logo.ico' %}">
     <title>U-VIRTUAL</title>
     <!-- Hojas de Estilo -->
-    <link rel="stylesheet" href="{% static "Uvirtual/style/login.css" %}">
+    <link rel="stylesheet" href="{% static './css/login.css' %}">
     <!-- Iconos -->
     <script src="https://kit.fontawesome.com/0fb473f9ca.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
     <!-- Inicio de sesión -->
     <div class="background__container">
-        <img src="{% static "Uvirtual/image/background.png" %}" alt="Fondo">
+        <img src="{% static './img/background.png' %}" alt="Fondo">
     </div>
     <header class="header">
         <div class="header__logo">
-            <img src="{% static "Uvirtual/image/logoUEFU.png" %}" alt="">
+            <img src="{% static './img/logoUEFU.png' %}" alt="">
             <h2>U-VIRTUAL</h2>
         </div>
         <h1 class="header__title">Unidad Educativa Fiscal Uruguay</h1>
@@ -31,9 +30,9 @@
     <div class="content">
         <div class="loginForm">
             <header class="form__header">
-                <img src="{% static "Uvirtual/image/UEFU-logo2.png" %}" class="form__header--img">
+                <img src="{% static './img/UEFU-logo2.png' %}" class="form__header--img">
             </header>
-            <form action="{% url "login" %}" method="post">
+            <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
                 <div class="form__field">
                     <label for="{{ form.username.id_for_label }}" class="required">{{ form.username.label }}</label>

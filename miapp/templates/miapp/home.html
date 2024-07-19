@@ -1,26 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'layouts/base.html' %}
+{% load static %}
 
-{% block title %}Home{% endblock %}
+{% block head %}
+{% endblock %}
 
-{% block content %}
-    <div class="hero">
-        <h1>Bienvenido a Mi Tienda Online</h1>
-        <p>Los mejores productos al mejor precio</p>
-    </div>
-    <div class="productos">
-        {% if productos %}
-            {% for producto in productos %}
-                <div class="producto">
-                    <!-- Se utiliza producto.imagen.url para obtener la URL del archivo de imagen -->
-                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
-                    <h2>{{ producto.nombre }}</h2>
-                    <p>{{ producto.descripcion }}</p>
-                    <p>Precio: ${{ producto.precio }}</p>
-                    <button>Comprar</button>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>Actualmente no hay productos.</p>
-        {% endif %}
-    </div>
+{% block contenido %}
+<p>hola :v </p>
 {% endblock %}

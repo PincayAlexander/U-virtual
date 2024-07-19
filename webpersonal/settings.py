@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'webpersonal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'comprex',
+        'NAME': 'u-virtual',
         'USER': 'postgres',
         'PASSWORD': '123456',  
         'HOST': 'localhost',
@@ -129,10 +129,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
 # webpersonal/settings.py
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-
+# Variables de redireccionamiento de login y logout
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'

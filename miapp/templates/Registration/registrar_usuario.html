@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Icono y Nombre -->
+    <link rel="icon" href="{% static './img/logo.ico' %}">
+    <title>U-VIRTUAL</title>
+    <!-- Hojas de Estilo -->
+    <link rel="stylesheet" href="{% static './css/registrar_usuario.css' %}">
+    <!-- Iconos -->
+    <script src="https://kit.fontawesome.com/0fb473f9ca.js" crossorigin="anonymous"></script>
+    
+</head>
+
+<body>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form__field">
+            {{ formUser.first_name.label_tag }} 
+            {{ formUser.first_name }}
+        </div>
+        <div class="form__field">
+            {{ formUser.last_name.label_tag }} 
+            {{ formUser.last_name }}
+        </div>
+        <div class="form__field">
+            {{ formUser.profile.label_tag }} 
+            {{ formUser.profile }}
+        </div>
+        <div class="form__field">
+            {{ formUser.dni.label_tag }} 
+            {{ formUser.dni }}
+        </div>
+        <div class="form__field">
+            {{ formUser.date_born.label_tag }} 
+            {{ formUser.date_born }}
+        </div>
+        <div class="form__field">
+            {{ formUser.rol.label_tag }} 
+            {{ formUser.rol }}
+        </div>    
+        <div class="form__field">
+            {{ formUser.email.label_tag }} 
+            {{ formUser.email }}
+        </div>
+
+        <div class="form__field">
+            {{ formUser.password.label_tag}}
+            {{ formUser.password }}
+        </div>
+        {% if formUser.errors %}
+            <div class="form__error">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <b>Error:</b> Usuario o contraseña incorrecto. <br>
+                Por favor, inténtelo de nuevo.
+            </div>
+        {% endif %}
+        <footer class="form__footer">
+            <input type="submit" value="Acceder" class="form__button" />
+            <a href="#" class="form__footer--urls">¿Olvidaste tu contraseña? </a>
+        </footer>
+    </form>
+
+    
+</body>
