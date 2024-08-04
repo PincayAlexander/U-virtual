@@ -1,68 +1,74 @@
+{% extends 'layouts/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="es">
+{% block head %}
+<link rel="stylesheet" href="{% static './css/form.css' %}">
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Icono y Nombre -->
-    <link rel="icon" href="{% static './img/logo.ico' %}">
-    <title>U-VIRTUAL</title>
-    <!-- Hojas de Estilo -->
-    <link rel="stylesheet" href="{% static './css/registrar_usuario.css' %}">
-    <!-- Iconos -->
-    <script src="https://kit.fontawesome.com/0fb473f9ca.js" crossorigin="anonymous"></script>
-    
-</head>
+{% block content %}
+<div class="user">
 
-<body>
+    <div class="form__image">
+        <img src="{% static './img/registrar_usuario.png' %}" alt="Descripción de la imagen">
+    </div>
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form__field">
-            {{ formUser.dni.label_tag }} 
-            {{ formUser.dni }}
-        </div>
-        <div class="form__field">
-            {{ formUser.first_name.label_tag }} 
-            {{ formUser.first_name }}
-        </div>
-        <div class="form__field">
-            {{ formUser.last_name.label_tag }} 
-            {{ formUser.last_name }}
-        </div>
-        <div class="form__field">
-            {{ formUser.profile_picture.label_tag }} 
-            {{ formUser.profile_picture }}
-        </div>
-        <div class="form__field">
-            {{ formUser.date_born.label_tag }} 
-            {{ formUser.date_born }}
-        </div>
-        <div class="form__field">
-            {{ formUser.rol.label_tag }} 
-            {{ formUser.rol }}
-        </div>    
-        <div class="form__field">
-            {{ formUser.email.label_tag }} 
-            {{ formUser.email }}
-        </div>
-
-        <div class="form__field">
-            {{ formUser.password.label_tag}}
-            {{ formUser.password }}
+        <div class="form__container">
+            <div class="form__field">
+                <label for="{{ formUser.dni.id_for_label }}" class="required">{{ formUser.dni.label }}</label>
+                {{ formUser.dni }}
+            </div>
+            <div class="form__field">
+                <label for="{{ formUser.first_name.id_for_label }}" class="required">{{ formUser.first_name.label }}</label>
+                {{ formUser.first_name }}
+            </div>
+            <div class="form__field">
+                <label for="{{ formUser.last_name.id_for_label }}" class="required">{{ formUser.last_name.label }}</label>
+                {{ formUser.last_name }}
+            </div>
+            <div class="form__field">
+                {{ formUser.profile_picture.label_tag }}
+                {{ formUser.profile_picture }}
+            </div>
+            <div class="form__field">
+                <label for="{{ formUser.date_born.id_for_label }}" class="required">{{ formUser.date_born.label }}</label>
+                {{ formUser.date_born }}
+            </div>
+            <div class="form__field">
+                <label for="{{ formUser.rol.id_for_label }}" class="required">{{ formUser.rol.label }}</label>
+                {{ formUser.rol }}
+            </div>
+            <div class="form__field">
+                <label for="{{ formUser.email.id_for_label }}" class="required">{{ formUser.email.label }}</label>
+                {{ formUser.email }}
+            </div>
+            <div class="form__field">
+                <label for="{{ formUser.password.id_for_label }}" class="required">{{ formUser.password.label }}</label>
+                {{ formUser.password }}
+            </div>
         </div>
         {% if formUser.errors %}
-            <div class="form__error">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                <b>Error:</b><br>
-            </div>
+        <div class="form__error">
+            <span></span>
+            <ul class="errorlist">
+                {% if formUser.password.errors %}
+                    {% for error in formUser.password.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                {% elif formUser.dni.errors %}
+                <li>Digite un DNI de 10 dígitos.</li>
+                {% else %}
+                <li>Hubo un error. Intente de nuevo</li>
+                {% endif %}
+            </ul>
+        </div>
         {% endif %}
         <footer class="form__footer">
             <input type="submit" value="Enviar" class="form__button" />
         </footer>
     </form>
+</div>
 
-    
-</body>
+
+{% endblock %}

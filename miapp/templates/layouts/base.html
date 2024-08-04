@@ -13,30 +13,102 @@
 </head>
 
 <body>
-    <header class="navbar">
-        <img src="{% static './img/UEFU-logo2.png' %}" alt="logo">
-        <h1>U-Virtual</h1>
-            <nav class="optionsUser">
-                <p><i class="fa-solid fa-user"></i>Vacio</p>
-                <ul class="list__options">
-                    <li class="list__options--item"><a href="#">
-                        Usuario
-                    </a></li>
-                    <li class="list__options--item"><a href="#">
-                        Configuracion
-                    </a></li>
-                    <li class="list__options--item"><a href="#">
-                        <form method="post" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class="navbar__button--logout">
-                                <p>Cerrar Sesión</p>
-                            </button>
-                        </form>
-                    </a></li>
-                </ul>
-            </nav>
-    </header/>    
+    <header class="header">
+        <a href="{% url 'home' %}" class="logo_home">
+            <div class="logo">
+                <img src="{% static './img/logoUEFU.png' %}" alt="logo">
+                <h1>U-Virtual</h1>
+            </div>
+        </a>
+        <div class="options">
+            <ul>
+                <li class="option"><button class="option__notifications" id="notifications">
+                        <i class="fa fa-solid fa-bell"></i>
+                    </button>
+                </li>
+                <li class="option"><a href="{% url 'home' %}" class="option__home">
+                        <i class="fa fa-solid fa-home"></i>
+                    </a>
+                </li>
+                <li class="option__user">
+                    <div class="profile">
+                        {% if request.user.profile_picture and request.user.profile_picture.url %}
+                        <img src="{{ request.user.profile_picture.url }}" alt="Foto de perfil media">
+                        {% else %}
+                        <img src="{% static 'img/default.png' %}" alt="Foto de perfil">
+                        {% endif %}
+                    </div>
+                    <span>{{ request.user.username }}</span>
+                </li>
+            </ul>
 
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <ul class="sidebar__menu">
+                <li class="sidebar__menu--item"><a href="{% url 'updateUser' %}">
+                        <i class="fa fa-solid fa-user"></i>
+                        <span>Usuario</span>
+                    </a>
+                </li>
+                <li class="sidebar__menu--item"><a href="{% url 'asignatura' %}">
+                        <i class="fa fa-solid fa-book"></i>
+                        <span>Asignatura</span>
+                    </a>
+                </li>
+                <li class="sidebar__menu--item"><a href="#">
+                        <i class="fa fa-solid fa-tasks"></i>
+                        <span>Actividad</span>
+                    </a>
+                </li>
+                <li class="sidebar__menu--item"><a href="{% url 'calificacion' %}">
+                        <i class="fa fa-solid fa-star"></i>
+                        <span>Calificaciones</span>
+                    </a>
+                </li>
+                <li class="sidebar__menu--item">
+                    <a href="#">
+                        <i class="fa fa-solid fa-calendar-day"></i>
+                        <span>Horario</span>
+                    </a>
+                </li>
+                <li class="sidebar__menu--item"><a href="#">
+                        <i class="fa fa-solid fa-calendar-check"></i>
+                        <span>Citación</span>
+                    </a>
+                </li>
+                <li class="sidebar__menu--item"><a href="#">
+                        <i class="fa fa-solid fa-graduation-cap"></i>
+                        <span>Tutoria</span>
+                    </a>
+                </li>
+                <li class="sidebar__menu--item"><a href="#">
+                        <i class="fa fa-solid fa-chalkboard-teacher"></i>
+                        <span>Conducta</span>
+                    </a>
+                </li>
+                <li class="sidebar__menu--item"><a href="#">
+                        <i class="fa fa-solid fa-cogs"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+                <li class="sidebar__menu--item logout">
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">
+                            <i class="fa fa-sign-out-alt"></i>
+                            <span>Cerrar Sesión</span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <section class="content">
+            {% block content %}{% endblock %}
+        </section>
+    </div>
 
 </body>
 

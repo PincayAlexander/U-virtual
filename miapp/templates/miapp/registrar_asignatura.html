@@ -1,0 +1,44 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static './css/form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="user">
+    
+    <div class="form__image--container">
+        <img src="{% static './img/cards/asignatura.png' %}" alt="Descripción de la imagen" class="form__image">
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form__container">
+            <div class="form__field">
+                <label for="{{ formAsig.nombre.id_for_label }}" class="required">{{ formAsig.nombre.label }}</label>
+                {{ formAsig.nombre }}
+            </div>
+            <div class="form__field">
+                <label for="{{ formAsig.descripcion.id_for_label }}" class="required">{{ formAsig.descripcion.label }}</label>
+                {{ formAsig.descripcion }}
+            </div>
+            <div class="form__field">
+                <label for="{{ formAsig.creditos.id_for_label }}" class="required">{{ formAsig.creditos.label }}</label>
+                {{ formAsig.creditos }}
+            </div>
+            <div class="form__field">
+                <label for="{{ formAsig.curso.id_for_label }}" class="required">{{ formAsig.curso.label }}</label>
+                {{ formAsig.curso }}
+            </div>
+            
+        </div>
+        
+        <footer class="form__footer">
+            <input type="submit" value="Enviar" class="form__button" />
+        </footer>
+    </form>
+</div>
+
+
+{% endblock %}

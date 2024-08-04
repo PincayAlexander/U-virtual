@@ -2,8 +2,39 @@
 {% load static %}
 
 {% block head %}
+<link rel="stylesheet" href="{% static './css/home.css' %}">
 {% endblock %}
 
-{% block contenido %}
-<p>hola :v </p>
+{% block content %}
+
+<div class="home">
+    <div class="info">
+
+            <img src="{% static 'img/UEFU-logo2.png' %}" alt="U-Virtual Logo" class="logo">
+
+        
+        <h1>U-Virtual</h1>
+        <br>
+        <p>En los escenarios actuales en los que se hace cada vez más necesario fortalecer habilidades
+            profesionales y personales para ser más competitivos y mejorar la calidad de vida...
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel corporis, velit minus
+            neque quidem exercitationem, ea incidunt aut, totam doloribus omnis rem perferendis quos
+            a labore optio eaque ratione adipisci.
+        </p>
+    </div>
+    <div class="links">
+        {% for link in links %}
+        <a href="{{ link.url }}" class="card">
+            <img src="{% static link.image %}" alt="{{ link.title }}">
+            <h3>{{ link.title }}</h3>
+        </a>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+
 {% endblock %}
