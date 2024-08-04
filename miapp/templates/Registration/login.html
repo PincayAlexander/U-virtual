@@ -36,7 +36,6 @@
                 {% csrf_token %}
                 <div class="form__field">
                     <label for="{{ form.username.id_for_label }}" class="required">{{ form.username.label }}</label>
-                    {# form.username.label_tag #} 
                     {{ form.username }}
                 </div>
                 <div class="form__field">
@@ -53,6 +52,7 @@
                 <footer class="form__footer">
                     <input type="submit" value="Acceder" class="form__button" />
                     <a href="#" class="form__footer--urls">¿Olvidaste tu contraseña? </a>
+                    <a href="#" class="form__footer--urls">REGISTRARSE</a>
                 </footer>
             </form>
 

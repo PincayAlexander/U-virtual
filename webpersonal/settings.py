@@ -122,7 +122,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'miapp/static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -136,3 +136,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # Variables de redireccionamiento de login y logout
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
+
+# Definir modelo de usuario personalizado
+AUTH_USER_MODEL = "miapp.User"

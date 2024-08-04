@@ -18,8 +18,12 @@
 
 <body>
 
-    <form method="post">
+    <form method="POST">
         {% csrf_token %}
+        <div class="form__field">
+            {{ formUser.dni.label_tag }} 
+            {{ formUser.dni }}
+        </div>
         <div class="form__field">
             {{ formUser.first_name.label_tag }} 
             {{ formUser.first_name }}
@@ -29,12 +33,8 @@
             {{ formUser.last_name }}
         </div>
         <div class="form__field">
-            {{ formUser.profile.label_tag }} 
-            {{ formUser.profile }}
-        </div>
-        <div class="form__field">
-            {{ formUser.dni.label_tag }} 
-            {{ formUser.dni }}
+            {{ formUser.profile_picture.label_tag }} 
+            {{ formUser.profile_picture }}
         </div>
         <div class="form__field">
             {{ formUser.date_born.label_tag }} 
@@ -56,13 +56,11 @@
         {% if formUser.errors %}
             <div class="form__error">
                 <i class="fa-solid fa-circle-exclamation"></i>
-                <b>Error:</b> Usuario o contraseña incorrecto. <br>
-                Por favor, inténtelo de nuevo.
+                <b>Error:</b><br>
             </div>
         {% endif %}
         <footer class="form__footer">
-            <input type="submit" value="Acceder" class="form__button" />
-            <a href="#" class="form__footer--urls">¿Olvidaste tu contraseña? </a>
+            <input type="submit" value="Enviar" class="form__button" />
         </footer>
     </form>
 
