@@ -51,24 +51,32 @@ def updateUser_view(request):
 @login_required
 def calificacion_view(request):
     usuario = None
+    userSearch = False
+    asignatura = []
     if request.method == 'GET' and 'dni' in request.GET:
         dni = request.GET.get('dni')
         try:
             usuario = User.objects.get(dni=dni)
+            userSearch = True
+            asignatura = [usuario.asignatura]
         except User.DoesNotExist:
             usuario = None
-
+            userSearch = False
+            
     if request.method == 'POST':
-        Caliform = calificacionForm(request.POST, request.FILES)
+        Caliform = calificacionForm(request.POST)
         if Caliform.is_valid():
             Caliform.save()
             return redirect('home')
     else:
         Caliform = calificacionForm()
+        
+    Caliform.fields['asignatura'].queryset = asignatura
     
     return render(request, 'miapp/registrar_calificacion.html', {
         'formCali': Caliform,
-        'usuario': usuario
+        'usuario': usuario,
+        'userSearch': userSearch
     })
 
 @login_required

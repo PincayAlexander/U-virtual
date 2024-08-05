@@ -118,6 +118,19 @@ class updateUserForm(forms.ModelForm):
         return user
 
 class calificacionForm(forms.ModelForm):
+    
+    dni = forms.CharField(
+        label='Buscar Usuario por DNI',
+        validators=[RegexValidator(regex=r'^\d{10}$', message='El número de cédula debe tener exactamente 10 dígitos')],
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Cédula',
+            'class': 'campo',
+            'required': True,
+        }),
+        error_messages={
+            'invalid': 'Ingrese un número de cédula válido',
+        }
+    )
         
     tarea = forms.CharField(
         label='Tareas',
@@ -178,7 +191,7 @@ class asignaturaForm(forms.ModelForm):
         label='Descripción',
         widget=forms.Textarea(attrs={
             'placeholder': 'Descripción de la Asignatura',
-            'class': 'campo',
+            'class': 'campo__area',
             'required': True,
             'rows': 5,
         })

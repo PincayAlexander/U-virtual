@@ -4,6 +4,20 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db.models.signals import post_delete
 
+
+class asignatura(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    creditos = models.IntegerField()
+    curso = models.CharField(max_length=20)
+
+    class Meta:
+        verbose_name = "Asignatura"
+        verbose_name_plural = "Asignaturas"
+    
+    def __str__(self):
+        return self.nombre
+
 # Modelo Usuario personalizado
 class UserManager(BaseUserManager):
     def create_user(self, dni, first_name, last_name, password=None, **extra_fields):
@@ -46,7 +60,8 @@ class User(AbstractUser):
         ('estudiante', 'Estudiante')
     ]
     rol = models.CharField(max_length=15, choices=roles)
-
+    asignatura = models.ForeignKey(asignatura, related_name='usuarios', on_delete=models.SET_NULL, null=True, blank=True)
+    
     EMAIL_FIELD = 'email'   
     REQUIRED_FIELDS = ['first_name', 'last_name', 'password']
     USERNAME_FIELD = 'dni'
@@ -73,19 +88,6 @@ def delete_user(sender, instance, **kwargs):
             os.rmdir(directory)
         except OSError:
             pass  # El directorio no está vacío o no se pudo eliminar
-
-class asignatura(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    creditos = models.IntegerField()
-    curso = models.CharField(max_length=20)
-
-    class Meta:
-        verbose_name = "Asignatura"
-        verbose_name_plural = "Asignaturas"
-    
-    def __str__(self):
-        return self.nombre
 
 class calificacion(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

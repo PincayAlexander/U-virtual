@@ -35,18 +35,18 @@
 
 
 
-.user {
+.content {
     display: flex;
     height: 100%;
     width: 99%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .form__image {
-    width: 500px;
-    height: 300px;
+    max-width: 480px;
+    height: 280px;
     padding: 0;
 }
 
@@ -56,7 +56,7 @@
     height: 100%;
 }
 
-.user form {
+.content form {
     padding: 0;
     margin-right: 25px;
     display: flex;
@@ -82,18 +82,50 @@
     font-weight: bold;
 }
 
+.campo__area,
+.campo__date,
+.campo__image, 
 .campo {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid rgb(112, 112, 112);
     border-radius: 5px;
-    font-size: 1rem;
-
+    font-size: .85rem;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
 }
 
-.campo_date {
-    width: 100%;
+.campo__date {
     height: 100%;
+    box-sizing: border-box;
+}
+
+.campo__area {
+    resize: none;
+}
+
+.campo__image {
+    padding: 0.5rem;    
+}
+
+.campo__image::file-selector-button {
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+.campo__image::file-selector-button:hover {
+    background-color: #d0d0d0;
+}
+
+.campo::placeholder,
+.campo__area::placeholder,
+.campo__date::placeholder,
+.campo__image::placeholder {
+    color: #9b9b9b;
+    opacity: 1;
 }
 
 .required::after {
@@ -111,7 +143,7 @@
 }
 
 .form__button {
-    width: 6vw;
+    width: 7.5vw;
     padding: .75rem;
     background-color: #333;
     color: #fff;
